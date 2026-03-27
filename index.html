@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matt Blues | Maman solo, 250K$/an, 20h/sem grâce à l'IA</title>
+    <meta name="description" content="Découvrez comment une maman solo gère 3 enfants, 8 locations, un club et un portefeuille boursier en travaillant 20h/semaine. Stratégies IA et automatisation.">
+    <meta property="og:title" content="Matt Blues — L'IA pour le vrai monde">
+    <meta property="og:description" content="Maman solo. 250K$/an. 20h/semaine. Je te montre tout.">
+    <meta property="og:image" content="img/hero.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --rose: #E8A0B4;
+            --rose-dark: #C56B7E;
+            --turquoise: #A8D0D8;
+            --turquoise-dark: #7BB8C4;
+            --prune: #3D3045;
+            --blanc: #FAF9F7;
+            --gris: #6B5B6E;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--prune);
+            background: var(--blanc);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(250,249,247,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(61,48,69,0.05);
+        }
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--prune);
+        }
+        nav .links { display: flex; gap: 30px; align-items: center; }
+        nav .links a {
+            text-decoration: none;
+            color: var(--gris);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav .links a:hover { color: var(--rose-dark); }
+        nav .cta-nav {
+            background: var(--rose-dark);
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        nav .cta-nav:hover { background: var(--prune); }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #F9E4EC 0%, #E8D5E0 50%, #C5E8ED 100%);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('img/hero.png') center/cover;
+            opacity: 0.15;
+        }
+        .hero-content {
+            position: relative;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 30px;
+        }
+        .hero-tag {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rose-dark);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--prune);
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--rose-dark);
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--gris);
+            max-width: 550px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.7);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--prune);
+            backdrop-filter: blur(5px);
+        }
+        .badge span { font-size: 1.1rem; }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: var(--rose-dark);
+            color: white;
+        }
+        .btn-primary:hover { background: var(--prune); transform: translateY(-2px); }
+        .btn-outline {
+            background: transparent;
+            color: var(--prune);
+            border: 2px solid var(--prune);
+        }
+        .btn-outline:hover { background: var(--prune); color: white; }
+        .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+        /* SECTIONS */
+        section { padding: 100px 60px; }
+
+        .section-tag {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--rose-dark);
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        /* ABOUT */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .about-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(61,48,69,0.15);
+        }
+        .about-img img { width: 100%; display: block; }
+        .about-text p {
+            color: var(--gris);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        .about-text .highlight {
+            color: var(--prune);
+            font-weight: 600;
+        }
+
+        /* TIMELINE */
+        .timeline-section { background: var(--prune); color: white; }
+        .timeline-section .section-tag { color: var(--rose); }
+        .timeline-section .section-title { color: white; }
+        .timeline {
+            max-width: 700px;
+            margin: 50px auto 0;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--rose);
+        }
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            min-width: 12px;
+            background: var(--rose);
+            border-radius: 50%;
+            margin-top: 6px;
+            margin-left: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .timeline-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--rose);
+            min-width: 50px;
+        }
+        .timeline-text { color: rgba(255,255,255,0.8); line-height: 1.6; }
+
+        /* NEWSLETTER */
+        .newsletter-section {
+            background: linear-gradient(135deg, #F9E4EC, #C5E8ED);
+            text-align: center;
+        }
+        .newsletter-section .section-title { max-width: 600px; margin: 0 auto 15px; }
+        .newsletter-section p { color: var(--gris); max-width: 500px; margin: 0 auto 30px; line-height: 1.7; }
+        .newsletter-bullets {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+        .newsletter-bullets li {
+            list-style: none;
+            padding: 8px 0;
+            font-size: 1.05rem;
+            color: var(--prune);
+        }
+        .newsletter-bullets li::before {
+            content: '→ ';
+            color: var(--rose-dark);
+            font-weight: 700;
+        }
+        .newsletter-form {
+            display: flex;
+            max-width: 450px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+        .newsletter-form input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid rgba(61,48,69,0.1);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            background: white;
+        }
+        .newsletter-form input:focus { outline: none; border-color: var(--rose-dark); }
+        .newsletter-form button {
+            padding: 16px 30px;
+            background: var(--rose-dark);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.3s;
+        }
+        .newsletter-form button:hover { background: var(--prune); }
+        .newsletter-trust {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: var(--gris);
+        }
+
+        /* ANTI-GURU */
+        .antiguru {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .antiguru-list {
+            text-align: left;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+        .antiguru-list li {
+            list-style: none;
+            padding: 10px 0;
+            font-size: 1.1rem;
+            color: var(--gris);
+        }
+        .antiguru-list li::before {
+            content: '• ';
+            color: var(--rose-dark);
+        }
+        .antiguru-closing {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--prune);
+            margin-top: 30px;
+        }
+
+        /* CAFE */
+        .cafe-section {
+            background: linear-gradient(135deg, #F9E4EC, #E8A0B4, #C5E8ED);
+            text-align: center;
+        }
+        .cafe-card {
+            background: rgba(255,255,255,0.9);
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(61,48,69,0.1);
+        }
+        .cafe-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--rose-dark);
+            margin: 10px 0;
+        }
+        .cafe-price small { font-size: 1rem; color: var(--gris); }
+        .cafe-perks {
+            text-align: left;
+            margin: 30px 0;
+        }
+        .cafe-perks li {
+            list-style: none;
+            padding: 10px 0;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(61,48,69,0.05);
+        }
+        .cafe-perks li::before {
+            content: '✓ ';
+            color: var(--rose-dark);
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--prune);
+            color: rgba(255,255,255,0.6);
+            padding: 50px 60px;
+            text-align: center;
+        }
+        footer .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .social-links { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+        .social-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .social-links a:hover { color: var(--rose); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            nav .links { display: none; }
+            section { padding: 60px 20px; }
+            .about { grid-template-columns: 1fr; gap: 40px; }
+            .hero-btns { flex-direction: column; align-items: center; }
+            .newsletter-form { flex-direction: column; }
+            .hero-badges { flex-direction: column; align-items: center; }
+        }
+
+        /* SCROLL ANIMATION */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">Matt Blues</div>
+    <div class="links">
+        <a href="#about">Mon histoire</a>
+        <a href="#newsletter">Newsletter</a>
+        <a href="#cafe">Un café avec Matt ☕</a>
+        <a href="https://www.instagram.com/mattblues.ia" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61578514690135" target="_blank">Facebook</a>
+        <a href="https://mattblues.beehiiv.com" class="cta-nav">S'abonner</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <p class="hero-tag">Maman solo · 3 enfants · passionnée d'IA</p>
+        <h1>J'ai lâché l'université à 28 ans pour acheter un club. Aujourd'hui, je fais <em>250K$/an</em> en 20h/semaine.</h1>
+        <p>Mère solo. 8 locations touristiques. Un portefeuille boursier. Pis des prompts d'IA qui font la job pendant que mes enfants dorment.</p>
+        <div class="hero-btns">
+            <a href="#newsletter" class="btn btn-primary">Reçois mes prompts gratuits →</a>
+            <a href="#about" class="btn btn-outline">Mon histoire</a>
+        </div>
+        <div class="hero-badges">
+            <div class="badge"><span>👩‍👧‍👦</span> 3 enfants</div>
+            <div class="badge"><span>🏠</span> 8 locations</div>
+            <div class="badge"><span>🤖</span> Propulsée par l'IA</div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="about fade-in">
+        <div class="about-img">
+            <img src="img/about.png" alt="Matt Blues">
+        </div>
+        <div class="about-text">
+            <p class="section-tag">Mon histoire</p>
+            <h2 class="section-title">Ce que j'ai bâti en 7 ans</h2>
+            <p>À 28 ans, j'ai acheté un club avec de l'argent emprunté. <span class="highlight">Tout le monde pensait que j'étais folle.</span></p>
+            <p>Aujourd'hui, à 35 ans : le club roule sans moi, j'ai 8 locations touristiques qui génèrent du cash chaque mois, pis mon portefeuille boursier grossit pendant que je dors.</p>
+            <p>Mes 3 enfants — 4, 6 et 8 ans — me voient à la maison tous les jours.</p>
+            <p><span class="highlight">J'ai fait plein d'erreurs en chemin. J'en fais encore.</span> Mais j'ai compris une chose : t'as pas besoin d'être parfaite pour bâtir quelque chose de solide.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+    <div style="text-align:center;">
+        <p class="section-tag">Le parcours</p>
+        <h2 class="section-title">De l'université au 250K$</h2>
+    </div>
+    <div class="timeline fade-in">
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div>
+                <div class="timeline-year">2019</div>
+                <div class="timeline-text">J'achète le club. 28 ans. Tout le monde pense que j'suis folle.</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div>
+                <div class="timeline-year">2020</div>
+                <div class="timeline-text">Première location touristique. J'apprends sur le tas.</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div>
+                <div class="timeline-year">2022</div>
+                <div class="timeline-text">5 locations + premier 100K. Séparation. Mère solo de 3.</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div>
+                <div class="timeline-year">2024</div>
+                <div class="timeline-text">Découverte de l'IA. Tout change. 15h/semaine gagnées.</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div>
+                <div class="timeline-year">2026</div>
+                <div class="timeline-text">250K$/an. 20h/semaine. 8 locations. 1 club. 3 enfants avec qui je peux être présente mentalement.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ANTI-GURU -->
+<section>
+    <div class="antiguru fade-in">
+        <p class="section-tag">En toute honnêteté</p>
+        <h2 class="section-title">Ce que je suis pas</h2>
+        <ul class="antiguru-list">
+            <li>Je suis pas coach.</li>
+            <li>Je suis pas influenceuse.</li>
+            <li>J'ai pas de Lamborghini dans mon garage.</li>
+            <li>J'ai pas fait mes millions en vendant un cours sur comment faire des millions.</li>
+        </ul>
+        <p class="antiguru-closing">Je suis une fille de Montréal qui a bâti ses affaires une à la fois. Je partage ce qui marche. Je dis ce qui marche pas. C'est tout.</p>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter" class="newsletter-section">
+    <div class="fade-in">
+        <p class="section-tag">Newsletter gratuite</p>
+        <h2 class="section-title">Chaque lundi dans ta boîte courriel :</h2>
+        <ul class="newsletter-bullets">
+            <li>Les prompts exacts que j'utilise pour gérer mes business</li>
+            <li>Comment j'automatise mes locations, mon club, mes finances</li>
+            <li>Les raccourcis que j'aurais voulu connaître à 28 ans</li>
+            <li>Mon protocole santé + longévité</li>
+        </ul>
+        <form class="newsletter-form" action="https://mattblues.beehiiv.com/subscribe" method="POST">
+            <input type="email" name="email" placeholder="Ton courriel" required>
+            <button type="submit">Envoie-moi ça →</button>
+        </form>
+        <p class="newsletter-trust">Gratuit. Désabonnement en 1 clic. Aucun spam, promis.</p>
+    </div>
+</section>
+
+<!-- CAFE -->
+<section id="cafe" class="cafe-section">
+    <div class="fade-in">
+        <p class="section-tag">Un café avec Matt</p>
+        <h2 class="section-title">Et si tu m'offrais un café pour 2$ par mois? ☕</h2>
+        <div class="cafe-card">
+            <div class="cafe-price">2$ <small>/mois</small></div>
+            <p style="color:var(--gris);margin-bottom:20px;">Le prix d'un café pour tout ça :</p>
+            <ul class="cafe-perks">
+                <li>Mes prompts exacts chaque mois (ceux que j'utilise pour vrai)</li>
+                <li>Mon protocole santé + longévité complet + recettes</li>
+                <li>Un audio de 5 min chaque semaine — motivations, idées stratégiques, développement personnel</li>
+                <li>1 session AMA par mois (pose-moi n'importe quelle question)</li>
+            </ul>
+            <a href="https://buymeacoffee.com/mattblues/membership" class="btn btn-primary" style="width:100%;text-align:center;">Offre-moi un café ☕ →</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="logo">Matt Blues</div>
+    <p>L'IA pour le vrai monde. Mère solo. Entrepreneure. Cobaye permanent.</p>
+    <div class="social-links">
+        <a href="https://www.facebook.com/profile.php?id=61578514690135" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/mattblues.ia" target="_blank">Instagram</a>
+        <a href="https://mattblues.beehiiv.com" target="_blank">Newsletter</a>
+        <a href="https://buymeacoffee.com/mattblues" target="_blank">Buy Me a Coffee</a>
+    </div>
+    <p style="margin-top:20px;font-size:0.75rem;">© 2026 Matt Blues. Fait avec ❤️ pis de l'IA.</p>
+</footer>
+
+<script>
+// Scroll animation
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
+
+</body>
+</html>
