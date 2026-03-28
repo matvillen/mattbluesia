@@ -7,7 +7,7 @@
     <meta name="description" content="Découvrez comment une maman solo gère 3 enfants, 8 locations, un club et un portefeuille boursier en travaillant 20h/semaine. Stratégies IA et automatisation.">
     <meta property="og:title" content="Matt Blues — L'IA pour le vrai monde">
     <meta property="og:description" content="Maman solo. 250K$/an. 20h/semaine. Je te montre tout.">
-    <meta property="og:image" content="héros.png">
+    <meta property="og:image" content="hero.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -83,7 +83,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: url('héros.png') center/cover;
+            background: url('img/hero.jpg') center/cover;
             opacity: 0.15;
         }
         .hero-content {
@@ -394,13 +394,37 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
+            /* Nav */
             nav { padding: 15px 20px; }
             nav .links { display: none; }
+
+            /* Sections */
             section { padding: 60px 20px; }
-            .about { grid-template-columns: 1fr; gap: 40px; }
-            .hero-btns { flex-direction: column; align-items: center; }
+
+            /* Hero */
+            .hero { min-height: 100svh; }
+            .hero-content { padding: 0 20px; }
+            .hero-tag { font-size: 0.75rem; letter-spacing: 2px; }
+            .hero h1 { font-size: 1.85rem; line-height: 1.15; }
+            .hero p { font-size: 1rem; }
+            .hero-btns { flex-direction: column; align-items: stretch; }
+            .hero-btns .btn { text-align: center; width: 100%; }
+            .hero-badges { flex-direction: column; align-items: center; gap: 12px; margin-top: 30px; }
+
+            /* About */
+            .about { grid-template-columns: 1fr; gap: 30px; }
+
+            /* Newsletter */
             .newsletter-form { flex-direction: column; }
-            .hero-badges { flex-direction: column; align-items: center; }
+            .newsletter-form input,
+            .newsletter-form button { width: 100%; }
+
+            /* Café */
+            .cafe-card { padding: 30px 20px; }
+
+            /* Footer */
+            footer { padding: 40px 20px; }
+            .social-links { flex-wrap: wrap; gap: 12px; }
         }
 
         /* SCROLL ANIMATION */
@@ -452,7 +476,7 @@
 <section id="about">
     <div class="about fade-in">
         <div class="about-img">
-            <img src="à propos.png" alt="Matt Blues">
+            <img src="img/about.jpg" alt="Matt Blues">
         </div>
         <div class="about-text">
             <p class="section-tag">Mon histoire</p>
